@@ -1,0 +1,1 @@
+export { getPiece } from "./getPiece";

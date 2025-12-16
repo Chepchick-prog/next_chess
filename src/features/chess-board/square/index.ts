@@ -1,0 +1,2 @@
+export { Square } from "./Square";
+

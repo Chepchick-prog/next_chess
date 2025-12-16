@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    padding: 18px 0;
+    padding-left: 36px;
+    color: #F8F8F8;
+
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(160.71deg, 
+        rgba(255, 255, 255, 0.05),
+        rgba(255, 255, 255, 0.01) 100%
+    );
+
+    & .logo_txt {
+        font-size: 36px;
+        line-height: 36px;
+
+    }
+}

@@ -1,0 +1,9 @@
+.board {
+    display: grid;
+    grid-template-rows: repeat(8, 1fr);
+
+    & .row {
+        display: flex;
+        flex: 1;
+    }
+}

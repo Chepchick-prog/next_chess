@@ -19,7 +19,12 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@shared/*": ["./src/shared/*"],
+      "@entities/*": ["./src/entities/*"],
+      "@features/*": ["./src/features/*"],
+      "@provider": ["./src/provider/index.ts"],
+      "@widgets/*": ["./src/widgets/*"],
+      "@lib/*": ["./src/lib/*"],
     }
   },
   "include": [

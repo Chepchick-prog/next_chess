@@ -1,0 +1,50 @@
+.square {
+    position: relative;
+
+    width: 75px;
+    height: 75px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+
+    & svg {
+        position: absolute;
+        color: #990000;
+    }
+
+    & .row_index {
+        top: 2px;
+        right: 2px;
+        position: absolute;
+    }
+
+    & .col_index {
+        bottom: 2px;
+        left: 2px;
+        position: absolute;
+    }
+
+    &.squere_piece {
+        cursor: grab;
+    }
+}
+
+.square_black {
+    color: #F0F0F0;
+    background-color: #2C2C2C;
+}
+
+.square_white {
+    color: #2C2C2C;
+    background-color: #F0F0F0;
+}
+
+.possibleMoves {
+    cursor: pointer;
+}
+
+.сheck {
+    background-color: #990000;
+}

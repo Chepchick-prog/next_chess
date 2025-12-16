@@ -1,0 +1,9 @@
+.piece {
+    width: inherit;
+    height: inherit;
+    font-size: 56px;
+
+    & img {
+        max-height: 50px;
+    }
+}

@@ -2,7 +2,7 @@ import { Board, GameState, Piece, Position } from "@shared/types/chess"
 import { CastlingMove } from "./CastlingMove";
 import { EnPassantMove } from "./EnPassantMove";
 
-export const SpecialMovePiece = (state: GameState, position: Position, piece: Piece): GameState => {
+export const SpecialMovePiece = (state: GameState, position: Position, piece: Piece): Board => {
 
     let board: Board = {...state.board};
 
@@ -13,11 +13,5 @@ export const SpecialMovePiece = (state: GameState, position: Position, piece: Pi
         board = EnPassantMove(state.board, position, piece)
     }
 
-    return {...state,
-        board: board,
-        currentPlayer: piece.color === 0 ? 1 : 0,
-        selectedPiece: null,
-        possibleMoves: [],
-        specialMoves: null,
-    }
+    return board
 }

@@ -1,4 +1,4 @@
-import { Color, GameAction, GameState, Piece, Position } from "@shared/types/chess";
+import { Board, Color, GameAction, GameState, Piece, Position } from "@shared/types/chess";
 import { getBoardChecks } from "../utils/getBoardChecks";
 import { getPieceMove } from "../utils/getPieceMove";
 import { getPossibleMoves } from "../utils/getPossibleMoves";
@@ -8,6 +8,7 @@ import { getSpecialMoves } from "../utils/getSpecialMoves";
 import { PromotePiece } from "../utils/PromotePiece";
 import { SpecialMovePiece } from "../utils/SpecialMovePiece";
 import { initialGameState } from "../initital-game";
+import { updateBoard } from "../utils/updateBoard";
 
 export const gameReducer = ( state: GameState, action: GameAction ): GameState => {
 
@@ -46,22 +47,35 @@ export const gameReducer = ( state: GameState, action: GameAction ): GameState =
 
         if (!state.selectedPiece) return state;
 
-        let newState: GameState = {...state}
+        const currentPlayer: Color = state.selectedPiece.color === 0 ? 1 : 0
+
+        let newBoard: Board = {...state.board}
 
         if(state.specialMoves?.position.some(position => position.row === action.payload.row && position.col === action.payload.col)) {
-            newState = SpecialMovePiece(state, action.payload, state.selectedPiece)
+            newBoard = SpecialMovePiece(state, action.payload, state.selectedPiece)
         } else {
-            newState = getPieceMove(state, action.payload, state.selectedPiece)
+            newBoard = updateBoard (state.board, state.selectedPiece, action.payload)
         }
 
-        const checkPieces = getBoardChecks(newState.board, newState.currentPlayer)
+        const checkPieces = getBoardChecks(newBoard, currentPlayer)
 
-        return {...newState, 
-            status: getStatusGame(newState.board, newState.currentPlayer, checkPieces),
+        return {...state,
+            board: newBoard,
+            status: getStatusGame(newBoard, currentPlayer, checkPieces),
             checkPieces: checkPieces,
+            currentPlayer: currentPlayer,
             specialMoves: null,
             selectedPiece: null,
             possibleMoves: [],
+            moveHistory: [
+                ...state.moveHistory,
+                {
+                    from: state.selectedPiece.position,
+                    to: action.payload,
+                    piece: state.selectedPiece,
+                    capturedPiece: state.board[action.payload.row][action.payload.col],
+                }
+            ],
         }
     }
 
@@ -69,7 +83,6 @@ export const gameReducer = ( state: GameState, action: GameAction ): GameState =
         const newPosition = state.moveHistory[state.moveHistory.length - 1].to
         const currentPlayer: Color = action.payload.selectedPiece.color === 0 ? 1 : 0
 
-        console.log(newPosition)
         const newBoard = PromotePiece(state.board, action.payload.selectedPiece, action.payload.promotion, newPosition);
 
         const checkPieces = getBoardChecks(newBoard, currentPlayer)
@@ -91,9 +104,7 @@ export const gameReducer = ( state: GameState, action: GameAction ): GameState =
             const newBoard = state.board.map(row => {
                 return row.reverse()
             })
-
             newBoard.reverse()
-
             return {
                 ...state,
                 board: newBoard,

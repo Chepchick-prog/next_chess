@@ -3,6 +3,7 @@ import { ChessProvider } from "@provider";
 
 import "./globals.css";
 import { NavigationContainer } from "@widgets/navigation-container";
+import { ModalProvider } from "@entities/modal/ui/ModalProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,6 +27,7 @@ export default function RootLayout({
       >
         <ChessProvider>
           <NavigationContainer/>
+          <ModalProvider/>
           <div className="content">
             {children}
           </div>

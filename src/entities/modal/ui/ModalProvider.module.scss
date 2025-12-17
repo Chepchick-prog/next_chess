@@ -1,0 +1,12 @@
+.modal {
+    position: fixed;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #00000080;
+    z-index: 9999;
+    user-select: none;
+    inset: 0px;
+}

@@ -1,5 +1,5 @@
-import { PromoteModal } from "../ui/promote/PromoteModal";
+import { Promote } from "../ui/promote/Promote";
 
 export const contentFromModalName = {
-    promote: <PromoteModal />,
+    promote: <Promote />,
 };

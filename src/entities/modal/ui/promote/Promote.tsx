@@ -1,13 +1,17 @@
+'use client'
+
 import { FC } from "react"
-import { Color, PieceType } from "../../../../type/chess"
+import { Color, PieceType } from "@shared/types/chess"
 import { useModalStore } from "../../model/store"
+import { useGameDispatch } from "@provider"
 
-import './PromoteModal.css'
-import { useGameDispatch } from "../../../../context/ChessContext"
+import './Promote.css'
 
-export const PromoteModal: FC = () => {
-    const { state, closeModal } = useModalStore();
+export const Promote: FC = () => {
     const dispatch = useGameDispatch()
+    const { state, closeModal } = useModalStore();
+
+    console.log(state)
 
     const color = state?.color === Color.WHITE ? "w" : "b";
     const promoteList = [
@@ -21,7 +25,7 @@ export const PromoteModal: FC = () => {
         dispatch({
             type: 'PROMOTE_PAWN',
             payload: {
-                selectedPiece: state,
+                selectedPiece: {...state}!,
                 promotion,
             }
         })

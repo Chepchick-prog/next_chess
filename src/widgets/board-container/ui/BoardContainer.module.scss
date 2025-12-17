@@ -1,10 +1,10 @@
 .container {
     overflow: hidden;
-    padding: 20px;
-    border: 1px solid #FFFFFF08;
+    box-sizing: border-box;
+
+    padding: clamp(8px, 2%, 24px);
+    margin-top: 120px;
+    outline: 1px solid #9C9393;
     border-radius: 12px;
-    background: linear-gradient(160.71deg, 
-        rgba(255, 255, 255, 0.05),
-        rgba(255, 255, 255, 0.01) 100%
-    );
+    background-color: #181818;
 }

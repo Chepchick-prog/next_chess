@@ -1,6 +1,13 @@
 .board {
-    display: grid;
-    grid-template-rows: repeat(8, 1fr);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    
+    aspect-ratio: 1/1;
+    width: min(90vw, 60vh); 
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: 8px;
 
     & .row {
         display: flex;

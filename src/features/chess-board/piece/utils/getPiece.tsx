@@ -1,7 +1,7 @@
 import { Piece, PieceType, Color } from "@shared/types/chess";
 import { BishopPieceIcon, KingPieceIcon, KnightPieceIcon, PawnPieceIcon, QueenPieceIcon, RookPieceIcon } from "@shared/assets/piece";
 
-export const getPiece = (piece: Piece, width = 75, height = 75) => {
+export const getPiece = (piece: Piece, width?: number | string, height?: number | string) => {
     const whitePiece = {
         [PieceType.KING]: <KingPieceIcon width={width} height={height} color={Color.WHITE}/>,
         [PieceType.QUEEN]: <QueenPieceIcon width={width} height={height} color={Color.WHITE}/>,

@@ -2,8 +2,8 @@ import { FC } from "react";
 import { Color } from "../../types/chess";
 
 export const KingPieceIcon: FC<{
-    width: number;
-    height: number;
+    width?: number | string;
+    height?: number | string;
     color: Color
 }> = ({width, height, color}) => {
     return (

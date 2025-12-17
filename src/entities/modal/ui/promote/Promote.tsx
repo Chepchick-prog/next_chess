@@ -1,25 +1,30 @@
 'use client'
 
 import { FC } from "react"
-import { Color, PieceType } from "@shared/types/chess"
+import { PieceType } from "@shared/types/chess"
 import { useModalStore } from "../../model/store"
 import { useGameDispatch } from "@provider"
+import { BishopPieceIcon, KnightPieceIcon, QueenPieceIcon, RookPieceIcon } from "@shared/assets/piece"
 
-import './Promote.css'
+import styles from './Promote.module.scss'
 
 export const Promote: FC = () => {
     const dispatch = useGameDispatch()
     const { state, closeModal } = useModalStore();
 
-    console.log(state)
-
-    const color = state?.color === Color.WHITE ? "w" : "b";
     const promoteList = [
         PieceType.QUEEN,
         PieceType.ROOK,
         PieceType.BISHOP,
         PieceType.KNIGHT,
     ]
+
+    const pieceList: any = {
+        [PieceType.QUEEN]: <QueenPieceIcon width={'100%'} height={'100%'} color={state?.color}/>,
+        [PieceType.ROOK]: <RookPieceIcon width={'100%'} height={'100%'} color={state?.color}/>,
+        [PieceType.BISHOP]: <BishopPieceIcon width={'100%'} height={'100%'} color={state?.color}/>,
+        [PieceType.KNIGHT]: <KnightPieceIcon width={'100%'} height={'100%'} color={state?.color}/>,
+    }
 
     const handlePromote = (promotion: PieceType) => {
         dispatch({
@@ -33,19 +38,16 @@ export const Promote: FC = () => {
     }
 
     return (
-        <div className='promote-modal'>
-            <h2>Selected piece</h2>
-            <div className='promote-modal-buttons'>
-                {promoteList.map(pieceType => (
-                    <button 
-                        onClick={() => handlePromote(pieceType)}
-                        className="promote-modal-button"
-                        key={pieceType}
-                    >
-                        <img src={`./img/piece/${PieceType[pieceType].toLocaleLowerCase()}-${color}.png`} alt="piece." />
-                    </button>
-                ))}
-            </div>
+        <div className={styles.promote}>
+            {promoteList.map((pieceType: PieceType) => (
+                <button 
+                    onClick={() => handlePromote(pieceType)}
+                    className={styles.promote_button}
+                    key={pieceType}
+                >
+                    {pieceList[pieceType]}
+                </button>
+            ))}
         </div>
     )
 }

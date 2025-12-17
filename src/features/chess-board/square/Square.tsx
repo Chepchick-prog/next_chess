@@ -64,22 +64,22 @@ export const Square: FC<SquareProps> = ({ piece, position }) => {
             onClick={() => {
                 handleMoveClick()
             }}>
-            {(piece && (isSpecialMove || isPossibleMove)) && <AttackPieceIcon width={75} height={75}/>}
-            {(!piece && (isSpecialMove || isPossibleMove)) && <MovePieceIcon width={75} height={75}/>}
+            {(piece && (isSpecialMove || isPossibleMove)) && <AttackPieceIcon/>}
+            {(!piece && (isSpecialMove || isPossibleMove)) && <MovePieceIcon/>}
             {piece && (
                 <PieceComponent
                     piece={piece}
                     position={position}
                 />
             )}
-            {position.col === 7 && (
+            {/* {position.col === 7 && (
                 <span className={classNames(styles.row_index, {
                     [styles.square_black]: isDark,
                     [styles.square_white]: !isDark,
                 })}>
                     {8 - position.row}
                 </span>)}
-            {position.row === 7 && <span className={styles.col_index}>{Col[position.col]}</span>}
+            {position.row === 7 && <span className={styles.col_index}>{Col[position.col]}</span>} */}
         </div>
     )
 }

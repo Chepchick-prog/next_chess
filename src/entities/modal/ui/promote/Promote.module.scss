@@ -1,0 +1,34 @@
+$active_red: #990000;
+$inactive_red: #780000;
+
+.promote {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(80vw, 50vh); 
+
+    box-sizing: border-box;
+    position: fixed;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid #FFFFFF20;
+    padding: 20px;
+    border-radius: 16px;
+    background-color: #0B0C0B;
+    
+    & .promote_button {
+        cursor: pointer;
+        overflow: hidden;
+        border-radius: 8px;
+        background-color: #2C2C2C;
+
+        transition: all 0.2s ease-in-out;
+        
+        &:hover {
+            background-color: #4C4C4C;
+            outline: 1px solid #9C9393;
+        }
+    }
+}

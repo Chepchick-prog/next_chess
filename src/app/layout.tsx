@@ -1,5 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import { ChessProvider } from "@provider";
+import { ChessProvider, DragEndDropProvider, GameActionProvider } from "@provider";
 
 import "./globals.css";
 import { NavigationContainer } from "@widgets/navigation-container";
@@ -26,11 +26,15 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ChessProvider>
-          <NavigationContainer/>
-          <ModalProvider/>
-          <div className="content">
-            {children}
-          </div>
+          <GameActionProvider>
+            <DragEndDropProvider>
+              <NavigationContainer/>
+              <ModalProvider/>
+              <div className="content">
+                {children}
+              </div>
+            </DragEndDropProvider>
+          </GameActionProvider>
         </ChessProvider>
       </body>
     </html>

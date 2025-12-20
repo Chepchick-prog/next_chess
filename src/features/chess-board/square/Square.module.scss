@@ -1,6 +1,6 @@
 .square {
     position: relative;
-
+    user-select: none;
     flex: 1;
     aspect-ratio: 1/1;
     
@@ -17,18 +17,14 @@
 
     & .row_index {
         top: 2px;
-        right: 2px;
+        right: 5px;
         position: absolute;
     }
 
     & .col_index {
         bottom: 2px;
-        left: 2px;
+        left: 5px;
         position: absolute;
-    }
-
-    &.squere_piece {
-        cursor: grab;
     }
 }
 
@@ -42,10 +38,7 @@
     background-color: #F0F0F0;
 }
 
-.possibleMoves {
-    cursor: pointer;
-}
-
 .сheck {
     background-color: #990000;
 }
+
